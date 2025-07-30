@@ -1,0 +1,8 @@
+@forward 'base'; 
+@forward 'layout';
+// incluir otros archivos scss 
+// @use evita tener codigo duplicado
+// @foward no usa el alias
+// usa @use cuando quieres acceder a una variable
+// usa @foward cuando quieras traerte todo el contenido del archivo
+
