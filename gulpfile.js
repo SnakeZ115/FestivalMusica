@@ -22,6 +22,8 @@ export function dev() {
     watch('src/js/**/*.js', js) // lo mismo para javascript
 }
 
+export const build = series(js, css); // agregar task de build para gulp, para poder publicar desde netlify
+
 export default series( js, css, dev ) // ejectua varias funciones, finaliza una serie antes de ejecutar otra, parallel es todas al mismo tiempo
 
 /*
