@@ -1,0 +1,75 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.galeria {
+    @include m.contenedor;
+    &-imagenes {
+        @include m.grid(1, 2rem);
+
+        @include m.telefono{
+            @include m.grid(2, 2rem);
+        }
+
+        @include m.tablet{
+            @include m.grid(3, 2rem);
+        }
+
+        @include m.desktop{
+            @include m.grid(4, 2rem);
+        }
+
+        img {
+            height: 20rem;
+            object-fit: cover;
+            cursor: pointer;
+        }
+    }
+}
+
+.modal {
+    position: fixed; // el elemento queda fijo y no se puede mover
+    inset: 0; //en cada esquina de la ventana
+    background-color: v.$negro;
+    background-color: rgba($color: v.$negro, $alpha: 0.5);
+    display: grid;
+    place-items: center;
+    animation: fadeIn ease-in 0.5s;
+    &.fade-out {
+        animation: fadeOut ease-in 0.5s;
+    }
+
+    img {
+        max-width: 100rem;
+    }
+}
+
+.btn-cerrar {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background-color: v.$blanco;
+    border: none;
+    display: grid;
+    place-items: center;
+    color: v.$negro;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+@keyframes fadeIn { //definir linea de tiempo
+    0% { //cuando inicie la animacion, hará esto
+        opacity: 0;
+    }
+    100% { // cuando llegue al 100%, despues de los 0.5 segundos
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut { //definir linea de tiempo
+    0% { //cuando inicie la animacion, hará esto
+        opacity: 1;
+    }
+    100% { // cuando llegue al 100%, despues de los 0.5 segundos
+        opacity: 0;
+    }
+}

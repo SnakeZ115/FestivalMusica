@@ -1,8 +1,14 @@
 import gulpSass from 'gulp-sass'
 import * as dartSass from 'sass'
-import { src, dest, watch } from 'gulp'
+import { src, dest, watch, series } from 'gulp'
 
 const sass = gulpSass(dartSass); // compilar sass con gulpsass
+
+export function js( done ) {
+    src('src/js/app.js')
+        .pipe(dest('build/js')) // hace una copia del archivo y la lleva al destino
+    done()
+}
 
 export function css( done ) {
     src('src/scss/app.scss', {sourcemaps: true})
@@ -13,7 +19,10 @@ export function css( done ) {
 
 export function dev() {
     watch('src/scss/**/*.scss', css) // habilitar modo watch para reflejar cambios inmediatamente. el ** indica que busque todos los archivos con extencion .scss
+    watch('src/js/**/*.js', js) // lo mismo para javascript
 }
+
+export default series( js, css, dev ) // ejectua varias funciones, finaliza una serie antes de ejecutar otra, parallel es todas al mismo tiempo
 
 /*
 // se crean funciones
